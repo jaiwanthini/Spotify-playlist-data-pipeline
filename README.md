@@ -150,7 +150,7 @@ Password: S9rhCTCQxar4Ddgx
 After running the pipeline, the following files will be generated:
 
 ```
-airflow/output/
+airflow/src/output/
    playlist_raw.csv
    playlist_transformed.csv
 ```
