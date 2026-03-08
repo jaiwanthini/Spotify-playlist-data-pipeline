@@ -54,12 +54,12 @@ spotify-playlist-data-pipeline
 │   │   └── playlist_pipeline_dag.py
 │   ├── logs
 │   ├── src
-│   │   ├── extract.py
-│   │   ├── transform.py
-│   │   └── load.py
-│   └── output
-│       ├── playlist_raw.csv
-│       └── playlist_transformed.csv
+│       ├── extract.py
+│       ├── transform.py
+│       └── load.py
+│       └── output
+│          ├── playlist_raw.csv
+│          └── playlist_transformed.csv
 │
 ├── docker-compose.yml
 ├── Dockerfile
