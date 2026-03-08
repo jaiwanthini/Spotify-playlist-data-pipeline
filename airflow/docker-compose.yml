@@ -1,0 +1,26 @@
+services:
+  airflow:
+    image: apache/airflow:2.8.1
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+      - ./logs:/opt/airflow/logs
+      - ./main.py:/opt/airflow/main.py
+      - ./src/output:/opt/airflow/src/output
+      - ./requirements.txt:/opt/airflow/requirements.txt
+      - ./airflow.db:/opt/airflow/airflow.db
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__WEBSERVER__WORKERS=2
+      - AIRFLOW_UID=0
+    entrypoint: >
+      bash -c "
+      mkdir -p /opt/airflow/src/output &&
+      pip install --no-cache-dir -r /opt/airflow/requirements.txt -q &&
+      airflow db init &&
+      airflow webserver --host 0.0.0.0 -p 8080 &
+      sleep 15 &&
+      airflow scheduler
+      "
